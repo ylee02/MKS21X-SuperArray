@@ -22,7 +22,6 @@ public class SuperArray {
         return true;
       }
     }
-
   }
 
   public String toString() {
@@ -32,5 +31,17 @@ public class SuperArray {
     }
     temp += "]";
     return temp;
+  }
+
+  public boolean add(int index, String element) {
+    String[] newArray = new String[size + 1];
+    for (int i = 0; i < size + 1; i++) {
+        newArray[i] = data[i];
+        if (i == index) {
+          i += 1;
+        }
+    }
+    newArray[index] = element;
+    return true;
   }
 }
