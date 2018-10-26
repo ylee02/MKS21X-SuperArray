@@ -8,7 +8,9 @@ public class SuperArray {
   }
 
   public void clear() {
-    size = 0;
+    size = 1;
+	String[] temp = new String[1];
+	data = temp;
   }
 
   public int size() {
@@ -178,7 +180,7 @@ public class SuperArray {
 		newArray[counter] = data[i];
 		counter += 1;
 	  }
-	  return true;
+	  return false;
   }
   
   
