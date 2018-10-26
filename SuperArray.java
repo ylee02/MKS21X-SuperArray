@@ -19,11 +19,12 @@ public class SuperArray {
 
   public boolean add(String element) {
     for (int i = 0; i < size; i++) {
-      if (data[i].equals("")) {
+      if (data[i] == null) {
         data[i] = element;
-        return true;
+        break;
       }
     }
+	return true;
   }
   
   public String get(int index) {
@@ -55,16 +56,44 @@ public class SuperArray {
 
   public String toString() {
     String temp = "[";
-    for (int i = 0; i < data.length; i++) {
-      temp += data[i] + ", ";
+    for (int i = 0; i < size; i++) {
+      if (data[i] != null) {
+		if (i == size - 1) {
+			temp += data[i];
+			break;
+		}
+		else if (data[i + 1] == null) {
+			temp += data[i];
+			break;
+		}
+		temp += data[i] + ", ";
+	  }
     }
     temp += "]";
     return temp;
   }
   
+  public String toStringDebug() {
+    String temp = "[";
+    for (int i = 0; i < data.length - 1; i++) {
+		temp += data[i] + ", ";
+	}
+    temp += data[size - 1] + "]";
+    return temp;
+  }
+  
+  public boolean isEmpty() {
+	  for (int i = 0; i < data.length; i++) {
+		  if (data[i] != null) {
+			  return false;
+		  }
+	  }
+	  return true;
+  }
+  
   public boolean contains(String element) {
 	for (int i = 0; i < size; i++) {
-		if (data[i].equals(element) {
+		if (data[i].equals(element)) {
 			return true;
 		}
 	}
@@ -74,7 +103,7 @@ public class SuperArray {
   public boolean add(int index, String element) {
     String[] newArray = new String[size + 1];
 	size += 1;
-	int counter = 0l
+	int counter = 0;
     for (int i = 0; i < size + 1; i++) {
 		if (i == index) {
           i += 1;
@@ -89,7 +118,7 @@ public class SuperArray {
   
   public int indexOf(String element) {
 	for (int i = 0; i < size; i++) {
-		if (data[i].equals(element) {
+		if (data[i].equals(element)) {
 			return i;
 		}
 	}
@@ -99,7 +128,7 @@ public class SuperArray {
   public int lastIndexOf(String element) {
 	 int counter = -1;
 	 for (int i = 0; i < size; i++) {
-		if (data[i].equals(element) {
+		if (data[i].equals(element)) {
 			counter = i;
 		}
 	 }
@@ -113,7 +142,7 @@ public class SuperArray {
 	  String counter2 = "";
 	  for (int i = 0; i < size - 1; i++){ 
 		if (i == index){ 
-			counter2 = data[i]
+			counter2 = data[i];
 			i += 1;
 		}
 		newArray[counter] = data[i];
@@ -128,7 +157,7 @@ public class SuperArray {
 	  size -= 1;
 	  int counter = 0;
 	  for (int i = 0; i < size - 1; i++) {
-		if (data[i].equals(element) {
+		if (data[i].equals(element)) {
 			i += 1;
 		}
 		newArray[counter] = data[i];
