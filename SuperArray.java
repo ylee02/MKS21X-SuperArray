@@ -47,8 +47,9 @@ public class SuperArray {
 		  return null;
 	  }
 	  else {
+		  String tempo = data[index];
 		  data[index] = str;
-		  return str;
+		  return tempo;
 	  }
   }
   private void resize() {
@@ -107,11 +108,15 @@ public class SuperArray {
 	return false;
   }
 
-  public boolean add(int index, String element) {
+  public void add(int index, String element) {
+	if (index < 0 || index >= size) {
+		System.out.println("index error");
+		return;
+	}
     String[] newArray = new String[size + 1];
 	size += 1;
 	int counter = 0;
-    for (int i = 0; i < size + 1; i++) {
+    for (int i = 0; i < size; i++) {
 		if (i == index) {
           i += 1;
         }
@@ -120,7 +125,6 @@ public class SuperArray {
     }
     newArray[index] = element;
 	data = newArray;
-    return true;
   }
   
   public int indexOf(String element) {
@@ -143,6 +147,10 @@ public class SuperArray {
   }
   
   public String remove(int index) {
+	  if (index < 0 || index >= size) {
+		  System.out.println("index error");
+		  return null;
+	  }
 	  String[] newArray = new String[size - 1];
 	  size -= 1;
 	  int counter = 0;
