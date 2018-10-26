@@ -45,12 +45,13 @@ public class SuperArray {
   public boolean add(int index, String element) {
     String[] newArray = new String[size + 1];
 	size += 1;
+	int counter = 0l
     for (int i = 0; i < size + 1; i++) {
 		if (i == index) {
           i += 1;
         }
-        newArray[i] = data[i];
-        
+        newArray[i] = data[counter];
+        counter += 1;
     }
     newArray[index] = element;
 	data = newArray;
@@ -92,4 +93,11 @@ public class SuperArray {
 	  data = newArray;
 	  return counter2;
   }
+  
+  public boolean remove(String element) {
+	  String[] newArray = new String[size - 1];
+	  size -= 1;
+	  for (int i = 0; i < size - 1;
+  
+  
 }
