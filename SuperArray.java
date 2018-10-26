@@ -55,7 +55,7 @@ public class SuperArray {
 	  }
   }
   private void resize() {
-	  String[] newArray = new String[size + 1];
+	  String[] newArray = new String[size * 2];
 	  
 	  for (int i = 0; i < size; i++){
 		  newArray[i] = data[i];
@@ -88,7 +88,7 @@ public class SuperArray {
     for (int i = 0; i < data.length - 1; i++) {
 		temp += data[i] + ", ";
 	}
-    temp += data[size - 1] + "]";
+    temp += data[data.length - 1] + "]";
     return temp;
   }
   
@@ -170,17 +170,22 @@ public class SuperArray {
   }
   
   public boolean remove(String element) {
+	  if (!(this.contains(element))) {
+		  return false;
+	  }
 	  String[] newArray = new String[size - 1];
 	  size -= 1;
 	  int counter = 0;
-	  for (int i = 0; i < size - 1; i++) {
-		if (data[i].equals(element)) {
+	  boolean done = false;
+	  for (int i = 0; i < size; i++) {
+		if (data[i].equals(element) && !(done)) {
 			i += 1;
+			done = true;
 		}
 		newArray[counter] = data[i];
 		counter += 1;
 	  }
-	  return false;
+	  return true;
   }
   
   
