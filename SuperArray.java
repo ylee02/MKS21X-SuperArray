@@ -177,7 +177,7 @@ public class SuperArray {
 	  size -= 1;
 	  int counter = 0;
 	  boolean done = false;
-	  for (int i = 0; i < size; i++) {
+	  for (int i = 0; i < size + 1; i++) {
 		if (data[i].equals(element) && !(done)) {
 			i += 1;
 			done = true;
@@ -185,6 +185,7 @@ public class SuperArray {
 		newArray[counter] = data[i];
 		counter += 1;
 	  }
+	  data = newArray;
 	  return true;
   }
   
