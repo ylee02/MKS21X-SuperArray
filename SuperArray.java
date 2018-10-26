@@ -3,8 +3,8 @@ public class SuperArray {
   private int size;
 
   public SuperArray() {
-    data = new String[10];
-    size = 10;
+    data = new String[1];
+    size = 1;
   }
 
   public void clear() {
@@ -18,11 +18,16 @@ public class SuperArray {
   
 
   public boolean add(String element) {
+	
     for (int i = 0; i < size; i++) {
       if (data[i] == null) {
         data[i] = element;
         break;
       }
+	  else if (data[i] != null && i == size - 1) {
+		  resize();
+		  data[i + 1] = element;
+	  }
     }
 	return true;
   }
@@ -47,11 +52,12 @@ public class SuperArray {
   }
   private void resize() {
 	  String[] newArray = new String[size + 1];
-	  size += 1;
-	  for (int i = 0; i < size - 1; i++){
+	  
+	  for (int i = 0; i < size; i++){
 		  newArray[i] = data[i];
 	  }
 	  newArray = data;
+	  size += 1;
   }
 
   public String toString() {
