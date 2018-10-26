@@ -27,6 +27,7 @@ public class SuperArray {
 	  else if (data[i] != null && i == size - 1) {
 		  resize();
 		  data[i + 1] = element;
+		  break;
 	  }
     }
 	return true;
@@ -56,7 +57,7 @@ public class SuperArray {
 	  for (int i = 0; i < size; i++){
 		  newArray[i] = data[i];
 	  }
-	  newArray = data;
+	  data = newArray;
 	  size += 1;
   }
 
@@ -146,7 +147,7 @@ public class SuperArray {
 	  size -= 1;
 	  int counter = 0;
 	  String counter2 = "";
-	  for (int i = 0; i < size - 1; i++){ 
+	  for (int i = 0; i < size + 1; i++){ 
 		if (i == index){ 
 			counter2 = data[i];
 			i += 1;
