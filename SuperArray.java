@@ -23,6 +23,33 @@ public class SuperArray {
       }
     }
   }
+  
+  public String get(int index) {
+	  if (index < 0 ||index >= size) {
+		  return null;
+	  }
+	  else {
+		  return data[index];
+	  }
+  }
+  
+  public String set(int index, String str) {
+	  if (index < 0 ||index >= size) {
+		  return null;
+	  }
+	  else {
+		  data[index] = str;
+		  return str;
+	  }
+  }
+  private void resize() {
+	  String[] newArray = new String[size + 1];
+	  size += 1;
+	  for (int i = 0; i < size - 1; i++){
+		  newArray[i] = data[i];
+	  }
+	  newArray = data;
+  }
 
   public String toString() {
     String temp = "[";
@@ -97,7 +124,16 @@ public class SuperArray {
   public boolean remove(String element) {
 	  String[] newArray = new String[size - 1];
 	  size -= 1;
-	  for (int i = 0; i < size - 1;
+	  int counter = 0;
+	  for (int i = 0; i < size - 1; i++) {
+		if (data[i].equals(element) {
+			i += 1;
+		}
+		newArray[counter] = data[i];
+		counter += 1;
+	  }
+	  return true;
+  }
   
   
 }
