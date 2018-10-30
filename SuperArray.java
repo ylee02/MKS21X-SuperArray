@@ -6,6 +6,14 @@ public class SuperArray {
     data = new String[1];
     size = 1;
   }
+  
+  public SuperArray(int startingCapacity) {
+	if (startingCapacity < 0) {
+		throw new IllegalArgumentException("Size cannot be" + size);
+	}
+	size = startingCapacity;
+	data = new String[startingCapacity];
+  }
 
   public void clear() {
     size = 1;
@@ -37,7 +45,7 @@ public class SuperArray {
   
   public String get(int index) {
 	  if (index < 0 ||index >= size) {
-		  return null;
+		  throw new IndexOutOfBoundsException();
 	  }
 	  else {
 		  return data[index];
@@ -46,7 +54,7 @@ public class SuperArray {
   
   public String set(int index, String str) {
 	  if (index < 0 ||index >= size) {
-		  return null;
+		  throw new IndexOutOfBoundsException();
 	  }
 	  else {
 		  String tempo = data[index];
@@ -55,13 +63,12 @@ public class SuperArray {
 	  }
   }
   private void resize() {
-	  String[] newArray = new String[size * 2];
+	  String[] newArray = new String[size * 2 + 1];
 	  
 	  for (int i = 0; i < size; i++){
 		  newArray[i] = data[i];
 	  }
 	  data = newArray;
-	  size += 1;
   }
 
   public String toString() {
@@ -112,8 +119,7 @@ public class SuperArray {
 
   public void add(int index, String element) {
 	if (index < 0 || index >= size) {
-		System.out.println("index error");
-		return;
+		throw new IndexOutOfBoundsException();
 	}
     String[] newArray = new String[size + 1];
 	size += 1;
@@ -150,8 +156,7 @@ public class SuperArray {
   
   public String remove(int index) {
 	  if (index < 0 || index >= size) {
-		  System.out.println("index error");
-		  return null;
+		  throw new IndexOutOfBoundsException();
 	  }
 	  String[] newArray = new String[size - 1];
 	  size -= 1;
@@ -188,6 +193,6 @@ public class SuperArray {
 	  data = newArray;
 	  return true;
   }
-  
+
   
 }
