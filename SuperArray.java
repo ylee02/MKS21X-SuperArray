@@ -3,8 +3,8 @@ public class SuperArray {
   private int size;
 
   public SuperArray() {
-    data = new String[1];
-    size = 1;
+    data = new String[10];
+	getSize();
   }
   
   public SuperArray(int startingCapacity) {
@@ -16,30 +16,33 @@ public class SuperArray {
   }
 
   public void clear() {
-    size = 1;
-	String[] temp = new String[1];
+    size = 0;
+	String[] temp = new String[10];
 	data = temp;
   }
 
   public int size() {
+	  getSize();
     return size;
   }
   
-  
+  private void getSize(){
+	  int ans = 0;
+	  for (int i = 0; i < data.length; i++) {
+		  if (this.data[i] != null) {
+			  ans++;
+		  }
+	  }
+	  size = ans;
+  }
 
   public boolean add(String element) {
-	
-    for (int i = 0; i < size; i++) {
-      if (data[i] == null) {
-        data[i] = element;
-        break;
-      }
-	  else if (data[i] != null && i == size - 1) {
-		  resize();
-		  data[i + 1] = element;
-		  break;
-	  }
-    }
+    getSize();
+	if (size == data.length) {
+		resize();
+	}
+	data[size] = element;
+	getSize();
 	return true;
   }
   
@@ -54,7 +57,7 @@ public class SuperArray {
   
   public String set(int index, String str) {
 	  if (index < 0 ||index >= size) {
-		  throw new IndexOutOfBoundsException();
+		  throw new IndexOutOfBoundsException();	
 	  }
 	  else {
 		  String tempo = data[index];
@@ -91,6 +94,12 @@ public class SuperArray {
   }
   
   public String toStringDebug() {
+	if (data.length < 1) {
+		return "[]";
+	}
+	if (data.length < 2) {
+		return "[" + data[0] + "]";
+	}		
     String temp = "[";
     for (int i = 0; i < data.length - 1; i++) {
 		temp += data[i] + ", ";
@@ -118,21 +127,25 @@ public class SuperArray {
   }
 
   public void add(int index, String element) {
-	if (index < 0 || index >= size) {
+	getSize();
+	if (index < 0 || index > size) {
 		throw new IndexOutOfBoundsException();
 	}
-    String[] newArray = new String[size + 1];
-	size += 1;
+    String[] newArray = new String[size + 3];
 	int counter = 0;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size + 1; i++) {
 		if (i == index) {
           i += 1;
         }
         newArray[i] = data[counter];
         counter += 1;
+		if (data[i] == null) {
+			break;
+		}
     }
     newArray[index] = element;
 	data = newArray;
+	getSize();
   }
   
   public int indexOf(String element) {
@@ -155,14 +168,14 @@ public class SuperArray {
   }
   
   public String remove(int index) {
+	  getSize();
 	  if (index < 0 || index >= size) {
 		  throw new IndexOutOfBoundsException();
 	  }
-	  String[] newArray = new String[size - 1];
-	  size -= 1;
+	  String[] newArray = new String[size + 1];
 	  int counter = 0;
 	  String counter2 = "";
-	  for (int i = 0; i < size + 1; i++){ 
+	  for (int i = 0; i < size; i++){ 
 		if (i == index){ 
 			counter2 = data[i];
 			i += 1;
@@ -171,6 +184,7 @@ public class SuperArray {
 		counter += 1;
 	  }
 	  data = newArray;
+	  getSize();
 	  return counter2;
   }
   
